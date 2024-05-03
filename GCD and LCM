@@ -1,0 +1,21 @@
+#include<stdio.h>
+int getGcd(int a,int b){
+    if(b==0){
+        return a;
+    }
+    return getGcd(b,a%b);
+    
+}
+int getLcm(int a,int b,int c){
+    int l=(a*b)/c;
+    return l;
+}
+int main(){
+    int num1,num2;
+    scanf("%d%d",&num1,&num2);
+    int c=getGcd(num1,num2);
+    printf("GCD is %d\n",c);
+    int d=getLcm(num1,num2,c);
+    printf("LCM is %d",d);
+}
+
