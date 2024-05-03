@@ -1,0 +1,34 @@
+
+
+#include <stdio.h>
+#include<math.h>
+int order(int a){
+    int len=0;
+    while(a!=0){
+        len++;
+        a/=10;
+    }
+    return len;
+}
+int checkArm(int num, int len){
+    int temp,digit,sum=0;
+    temp=num;
+    while(temp!=0){
+        digit=temp%10;
+        sum=sum+pow(digit,len);
+        temp/=10;
+    }
+    if(sum==num){
+        printf("yes");
+    }
+    else
+    printf("no");
+}
+int main() {
+    int num;
+    scanf("%d",&num);
+    int len=order(num);
+    (checkArm(num,len));
+}
+
+
