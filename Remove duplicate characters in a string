@@ -1,0 +1,23 @@
+#include<stdio.h>
+#include<string.h>
+int main(){
+    char str[100];
+    fgets(str,sizeof(str),stdin);
+    int len=strlen(str);
+    int index=0;
+    for(int i=0; str[i]!='\0'; i++){
+        int j;
+        for(j=0; j<index; j++){
+            if(str[i]==str[j]){
+                break;
+            }
+        }
+        if(j==index){
+            str[index++]=str[i];
+        }
+        
+    }
+    str[index]='\0';
+    printf("%s",str);
+    
+}
