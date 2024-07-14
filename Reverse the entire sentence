@@ -1,0 +1,61 @@
+
+
+#include <stdio.h>
+#include <string.h>
+
+void reverseWords(char *sentence) {
+    int len = strlen(sentence);
+    int start = 0;
+    int end = 0;
+
+    // Reverse the entire sentence
+    for (int i = 0; i < len / 2; i++) {
+        char temp = sentence[i];
+        sentence[i] = sentence[len - 1 - i];
+        sentence[len - 1 - i] = temp;
+    }
+
+    // Reverse each word individually
+    while (start < len) {
+        // Find the start of the next word
+        while (start < len && sentence[start] == ' ') {
+            start++;
+        }
+
+        // Find the end of the current word
+        end = start;
+        while (end < len && sentence[end] != ' ') {
+            end++;
+        }
+
+        // Reverse the current word
+        for (int i = start, j = end - 1; i < j; i++, j--) {
+            char temp = sentence[i];
+            sentence[i] = sentence[j];
+            sentence[j] = temp;
+        }
+
+        start = end;
+    }
+}
+
+int main() {
+    char sentence[1000];
+
+    // Read the sentence from the user
+    printf("Enter a sentence: ");
+    fgets(sentence, sizeof(sentence), stdin);
+
+    // Remove the newline character from fgets result
+    if (sentence[strlen(sentence) - 1] == '\n') {
+        sentence[strlen(sentence) - 1] = '\0';
+    }
+
+    // Reverse the words in the sentence
+    reverseWords(sentence);
+
+    // Print the reversed sentence
+    printf("Reversed sentence: %s\n", sentence);
+
+    return 0;
+}
