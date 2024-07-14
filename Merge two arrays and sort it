@@ -1,0 +1,27 @@
+
+#include<stdio.h>
+int main(){
+    int arr1[]={1,4,6};
+    int arr2[]={2,5,3};
+    int arr3[6];
+    int size1=sizeof(arr1)/sizeof(arr1[0]);
+    int size2=sizeof(arr2)/sizeof(arr2[0]);
+    for(int i=0; i<size1; i++){
+        arr3[i]=arr1[i];
+    }
+    for(int j=size1; j<size1+size2; j++){
+        arr3[j]=arr2[j-size1];
+    }
+    for(int k=0; k<6; k++){
+        for(int l=k+1; l<6; l++){
+            if(arr3[k]>arr3[l]){
+                int temp=arr3[l];
+                arr3[l]=arr3[k];
+                arr3[k]=temp;
+            }
+        }
+    }
+    for(int k=0; k<6; k++){
+        printf("%d ",arr3[k]);
+    }
+}
