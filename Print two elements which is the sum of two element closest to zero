@@ -1,0 +1,22 @@
+#include<stdio.h>
+#include<math.h>
+#include<stdlib.h>
+int main(){
+    int arr[]={-1,-10,8,2};
+    int size=4;
+    int first=arr[0];
+    int second=arr[1];
+    for(int i=0; i<size; i++){
+        for(int j=i+1; j<size; j++){
+            if(abs(arr[j])<abs(first)){
+                second=first;
+                first=arr[j];
+                
+            }
+            else if(abs(arr[j])<abs(second)){
+                second=arr[j];
+            }
+        }
+    }
+    printf("%d",first+second);
+}
