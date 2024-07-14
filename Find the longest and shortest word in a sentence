@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<string.h>
+int main(){
+    char str[100];
+    scanf("%[^\n]",str);
+    int len=strlen(str);
+    int count=0, max=0, min=len, max_s, min_s;
+    for(int i=0; i<=len; i++){
+        if(str[i]!=' ' && str[i]!='\0'){
+            count++;
+        }
+        else{
+            if(count>max){
+                max=count;
+                max_s=i-count;
+                count=0;
+            }
+            else if(count<min){
+                min=count;
+                min_s=i-count;
+                count=0;
+            }
+        }
+    }
+    printf("Longest word: ");
+    for(int i=0; i<max; i++){
+        printf("%c",str[max_s++]);
+    }
+    printf("\nShortest word: ");
+    for(int i=0; i<min; i++){
+        printf("%c",str[min_s++]);
+    }
+}
