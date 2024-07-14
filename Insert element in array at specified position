@@ -1,0 +1,18 @@
+
+
+#include<stdio.h>
+int main(){
+    int arr[]={10,20,30,50,60};
+    int len=sizeof(arr)/sizeof(arr[0]);
+    int pos,value;
+    scanf("%d%d",&pos,&value);
+    len=len+1;
+    for(int i=len-1; i>=pos-1; i--){
+        arr[i]=arr[i-1];
+    }
+    arr[pos-1]=value;
+    for(int i=0; i<len; i++){
+        printf("%d ",arr[i]);
+    }
+    
+}
