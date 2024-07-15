@@ -1,0 +1,26 @@
+#include<stdio.h>
+#include<string.h>
+int main(){
+    char str[100];
+    fgets(str,100,stdin);
+    int len=strlen(str);
+    int count=0, dcount=0;
+    int index=0;
+    for(int i=1; i<len-2; i++){
+        if(str[i]=='@' && count<=1){
+            count++;
+            index=i;
+        }
+        
+    }
+    for(int j=index; j<len-3; j++){
+        if(str[j]=='.'){
+            dcount++;
+        }
+    }
+    if(count==1 && dcount>=1){
+        printf("Valid");
+    }
+    else
+    printf("Not valid");
+}
