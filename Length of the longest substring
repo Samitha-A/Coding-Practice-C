@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<string.h>
+
+int main()
+{
+    char arr[100];
+    scanf("%s", arr);
+    int len = strlen(arr);
+    int start = 0, end = 1;
+    int max = 0;
+   
+    while (start < end && end <= len) {
+        int count = 1;
+        char a = arr[end - 1];
+
+        // Check from 'start' to 'end-1' for repeated character
+        for (int k = start; k < end - 1; k++) {
+            if (arr[k] == a) {
+                start = k + 1;   // Update 'start' to skip repeated character
+                break;
+            }
+            count++;
+        }
+
+        // Update maximum length of substring without repeating characters
+        max = (count > max) ? count : max;
+        end++;
+    }
+
+    printf("The length of the longest substring without repeating characters: %d\n", max);
+
+    return 0;
+}
