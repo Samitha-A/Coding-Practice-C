@@ -1,0 +1,39 @@
+/*To rotate the 2D array by 90 degrees
+  Take transpose of the array in place
+  Reverse the elements of each row(if Clockwise)
+  Reverse the elements of each column(if Anti-Clockwise)*/
+  
+#include<stdio.h>
+#include<string.h>
+int main(){
+    int rows, columns;
+    scanf("%d%d",&rows,&columns);
+    int arr[rows][columns];
+    for(int i=0; i<rows; i++){
+        for(int j=0; j<columns; j++){
+            scanf("%d",&arr[i][j]);
+        }
+    }
+    //Taking transpose of the array
+    for (int i=0; i<rows; i++) {
+        for (int j=i+1; j<columns; j++) {
+            int temp = arr[i][j];
+            arr[i][j] = arr[j][i];
+            arr[j][i] = temp;
+        }
+    }
+    //Reverse the elements of each row for 90 degree clockwise rotation
+    for(int i=0; i<rows; i++){
+        for(int j=0; j<columns/2; j++) {
+            int temp = arr[i][j];
+            arr[i][j] = arr[i][columns-1-j];
+            arr[i][columns-1-j] = temp;
+        }
+    }
+    for(int i=0; i<rows; i++){
+        for(int j=0; j<columns; j++){
+            printf("%d ",arr[i][j]);
+        }
+        printf("\n");
+    }
+}
