@@ -1,0 +1,20 @@
+#include<stdio.h>
+#include<string.h>
+
+void first(const char *str, const char *word){
+    char *pos=strstr(str,word);
+    if(pos!=NULL){
+        int index=pos-str;
+        printf("Word found at %d",index);
+    }
+}
+
+int main(){
+    char str[100];
+    char word[100];
+    fgets(str,100,stdin);
+    fgets(word,100,stdin);
+    str[strcspn(str,"\n")]='\0';
+    word[strcspn(word,"\n")]='\0';
+    first(str,word);
+}
