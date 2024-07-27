@@ -1,0 +1,29 @@
+#include<stdio.h>
+#include<string.h>
+int main(){
+    char str1[100],str2[100];
+    scanf("%[^\n]",str1);
+    getchar();
+    scanf("%[^\n]",str2);
+    char count1[256]={0};
+    char count2[256]={0};
+    int len1=strlen(str1);
+    int len2=strlen(str2);
+    int flag=1;
+    for(int i=0; i<len1; i++){
+        count1[str1[i]]++;
+    }
+    for(int i=0; i<len2; i++){
+        count2[str2[i]]++;
+    }
+    for(int i=0; i<256; i++){
+        if(count1[i]!=count2[i]){
+            flag=0;
+        }
+    }
+    if(flag==1){
+        printf("Anagram");
+    }
+    else
+    printf("Not anagram");
+}
