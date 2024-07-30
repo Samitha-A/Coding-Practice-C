@@ -1,33 +1,40 @@
-#include <stdio.h>
-#include <string.h>
+#include<stdio.h>
+#include<string.h>
 
-int main() {
-    char str1[100], str2[100];
-    int a1 = 0, b1 = 0, c1 = 0;
-    int a2 = 0, b2 = 0, c2 = 0;
-
-    scanf("%s %s", str1, str2);
+int main(){
+    char string1[100],string2[100];
+    char str1[100],str2[100];
+    scanf("%s %s",string1,string2);
+    strcpy(str1,string1);
+    strcpy(str2,string2);
+    int a1=0, a2=0, b1=0, b2=0, c1=0, c2=0;
     
-    sscanf(str1, "%d.%d.%d", &a1, &b1, &c1);
-    sscanf(str2, "%d.%d.%d", &a2, &b2, &c2);
-
-    if (a1 > a2) {
-        printf("ver 1 is greater");
-    } else if (a2 > a1) {
-        printf("ver 2 is greater");
-    } else {
-        if (b1 > b2) {
-            printf("ver 1 is greater");
-        } else if (b2 > b1) {
-            printf("ver 2 is greater");
-        } else {
-            if (c1 > c2) {
-                printf("ver 1 is greater");
-            } else if (c2 > c1) {
-                printf("ver 2 is greater");
-            } else {
-                printf("ver 1 and ver 2 are equal");
-            }
-        }
+    sscanf(str1, "%d.%d.%d",&a1,&b1,&c1);
+    sscanf(str2, "%d.%d.%d", &a2,&b2,&c2);
+    
+    if(a1>a2){
+        printf("%s greater than %s",str1,str2);
     }
+    else if(a1<a2){
+        printf("%s lesser than %s",str1,str2);
+    }
+    else{
+        if(b1>b2){
+            printf("%s greater than %s",str1,str2);
+        }
+        else if(b2>b1){
+            printf("%s lesser than %s",str1,str2);
+        }
+        else if(c1>c2){
+            printf("%s greater than %s",str1,str2);
+        }
+        else if(c2>c1){
+            printf("%s lesser than %s",str1,str2);
+        }
+        else{
+            printf("%s is equal to %s",str1,str2);
+        }
+        
+    }
+    
 }
