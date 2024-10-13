@@ -1,0 +1,16 @@
+//Permutation(a,b) = a!/(a-b)!
+#include<stdio.h>
+#include<string.h>
+#include<stdbool.h>
+unsigned long long fact(int a,int i,unsigned long long  sum){
+    sum=sum*i;
+    i++;
+    if(i<=a) 
+    return fact(a,i,sum);
+    else 
+    return sum;
+}
+int main(){
+   int a=20,b=20;
+   printf("%dP%d=%ld",a,b,fact(a,1,1)/fact(a-b,1,1));
+}
