@@ -1,0 +1,46 @@
+//Replace vowel with next vowel and consonant with the previous consonant in a given word
+Ex: hello -> gikku
+
+#include<stdio.h>
+#include<ctype.h>
+#include<string.h>
+
+int isVowel(char ch){
+    ch=tolower(ch);
+    return ( ch=='a' || ch=='e' || ch=='i' || ch=='o' || ch=='u');
+}
+
+char prevV(char ch){
+    switch (tolower(ch)){
+        case 'a': return 'e';
+        case 'e': return 'i';
+        case 'i': return 'o';
+        case 'o': return 'u';
+        case 'u': return 'a';
+        default: return ch;
+    }
+}
+
+char prevC(char ch){
+    ch=tolower(ch);
+    char prev = ch-1;
+    while(isVowel(prev) || !isalpha(ch)){
+        prev--;
+    }
+    return prev;
+}
+
+int main(){
+    char word[100];
+    scanf("%s",word);
+    for(int i=0; i<strlen(word); i++){
+        char ch=word[i];
+        if(isVowel(ch)){
+            word[i]=prevV(ch);
+        }
+        else if(isalpha(ch)){
+            word[i]=prevC(ch);
+        }
+    }
+    printf("%s",word);
+}
