@@ -1,0 +1,38 @@
+//Using Dynamic Programming
+#include<stdio.h>
+#include<string.h>
+
+int minimum(int tl, int top, int left){
+    int min;
+    if(tl<=top && tl<=left) return tl;
+    else if(top<=tl && top<=left) return top;
+    else return left;
+}
+
+
+int main(){
+    char word1[100], word2[100];
+    scanf("%s%s",word1,word2);
+    int m=strlen(word1);
+    int n=strlen(word2);
+    int min;
+    int arr[m+1][n+1];
+    
+    for(int i=1; i<=m; i++) arr[i][0]=i;
+    for(int j=1; j<=n; j++) arr[0][j]=j;
+    
+    for(int i=1; i<=m; i++){
+        for(int j=1; j<=n; j++){
+            if(word1[i-1]==word2[j-1])
+            arr[i][j]=arr[i-1][j-1];
+            else{
+                int topLeft=arr[i-1][j-1]; //replace
+                int top=arr[i-1][j]; //remove
+                int left=arr[i][j-1]; //insert
+                min=minimum(topLeft,top,left);
+                arr[i][j]=min+1;
+            }
+        }
+    }
+    printf("%d",arr[m][n]);
+}
