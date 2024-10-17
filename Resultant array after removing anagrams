@@ -1,0 +1,46 @@
+#include<stdio.h>
+#include<string.h>
+
+int isAnagram(char* str1, char* str2){
+    int len1=strlen(str1);
+    int len2=strlen(str2);
+    if(len1!=len2) return 0;
+    int charCount[256]={0};
+    for(int i=0; i<len1; i++){
+        charCount[str1[i]]++;
+        charCount[str2[i]]--;
+    }
+    for(int i=0; i<256; i++){
+        if(charCount[i]!=0) return 0;
+    }
+    return 1;
+}
+
+int main(){
+    int n;
+    scanf("%d",&n);
+    char str[n][100];
+    for(int i=0; i<n; i++){
+        scanf("%s",str[i]);
+    }
+    int processed[100]={0};
+    int flag=1;
+    printf("[");
+    for(int i=0; i<n; i++){
+        if(processed[i]==0){
+            if(flag==1)
+            printf("\"%s\"",str[i]);
+            else
+            printf(",\"%s\"",str[i]);
+            flag=0;
+            processed[i]=1;
+        }
+        for(int j=i+1; j<n; j++){
+            
+            if(processed[j]==0 && isAnagram(str[i],str[j])==1){
+                processed[j]=1;
+            }
+        }
+    }
+    printf("]");
+}
