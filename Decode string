@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+#define MAX_LEN 1000
+
+// Helper function to decode a substring
+void decodeHelper(const char* s, int* index, char result[]) {
+    int num = 0;
+    char temp[MAX_LEN] = ""; // Temporary buffer for decoded segments
+
+    while (s[*index] != '\0' && s[*index] != ']') {
+        if (isdigit(s[*index])) {
+            // Build the multiplier number
+            num = num * 10 + (s[*index] - '0');
+        } else if (s[*index] == '[') {
+            (*index)++; // Skip '['
+            temp[0] = '\0'; // Reset temporary buffer
+            decodeHelper(s, index, temp); // Decode the substring inside brackets
+            for (int i = 0; i < num; i++) {
+                strcat(result, temp); // Append the decoded substring multiple times
+            }
+            num = 0; // Reset the multiplier
+        } else {
+            // Append plain characters
+            int len = strlen(result);
+            result[len] = s[*index];
+            result[len + 1] = '\0';
+        }
+        (*index)++;
+    }
+}
+
+void decodeString(const char* s, char result[]) {
+    int index = 0;
+    decodeHelper(s, &index, result);
+}
+
+int main() {
+    char s[MAX_LEN];
+    char result[MAX_LEN] = "";
+
+    scanf("%s", s); // Input the encoded string
+
+    decodeString(s, result); // Decode the string
+    printf("%s\n", result);  // Print the decoded result
+
+    return 0;
+}
